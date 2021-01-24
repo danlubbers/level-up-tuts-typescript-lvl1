@@ -1,3 +1,5 @@
+import { Person } from './Interfaces';
+
 // Variables
 
 const isOpen: boolean = false;
@@ -63,10 +65,11 @@ dog = "Lucie";
 
 /* Interface */ 
 
-interface Person {
-  name: string;
-  age?: number; // optional param
-}
+// Moved to Interfaces.ts for module example
+// interface Person {
+//   name: string;
+//   age?: number; // optional param
+// }
 
 const sayName = ({name, age}: Person): string => {
   console.log(name);
@@ -93,7 +96,7 @@ console.log(Type.Quiz);
 // String Enum
 enum Type2 {
   Video = "VIDEO", 
-  BlogPost = "BLOG_POST" 
+  BlogPost = "BLOG_POST", 
   Quiz = "QUIZ"
 }
 
@@ -101,3 +104,48 @@ const createContent2 = (contentType: Type2) => {}
 
 createContent2(Type2.Quiz)
 console.log(Type2.Quiz);
+
+/* Classes */
+
+class Team {
+  teamName: string;
+  // public teamName: string; // this is the same thing as above
+  // private teamName: string; // this is scoped only to the team class
+  constructor(teamName) {
+    this.teamName = teamName;
+  }
+  score(): string {
+    console.log('goal!');
+    return 'goal!!!!';
+    
+  }
+}
+
+const redWings = new Team('Red Wings');
+redWings.score();
+redWings.teamName;
+
+
+/* Generics */ 
+const outputInput = <T>(arg: T): T => {
+  return arg;
+};
+
+outputInput('hi');
+outputInput(3);
+
+/* Duck Typing */
+
+class Dancer implements Person {
+  name: string;
+  age?: number;
+  
+}
+
+let ElNino: Person = new Dancer();
+
+const fake = {
+  name: "Nino"
+}
+
+ElNino = fake;
